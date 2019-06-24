@@ -126,7 +126,7 @@ def define_model(vocab_size, max_length):
 	se1 = Embedding(vocab_size, 400, mask_zero=True)(inputs2)
 	#se2 = Dropout(0.15)(se1)
 	se3 = LSTM(384, return_sequences=True, dropout=0.35, recurrent_dropout=0.35)(se1)
-	se4 = TimeDistributed(Dense(300, activation='relu'))(se3)
+	se4 = Dense(300, activation='relu')(se3)
 	# decoder model
 	decoder1 = concatenate([fe3, se4])
 	decoder2 = Bidirectional(LSTM(256, return_sequences=False, dropout=0.35, recurrent_dropout=0.35))(decoder1)
